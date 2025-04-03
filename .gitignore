@@ -1,0 +1,24 @@
+# Node modules (Heavy files, locally installed)
+node_modules/
+
+# Env file (Sensitive API keys, passwords)
+.env
+
+# Build/Generated files (Automatically created)
+package-lock.json
+package.json
+
+# User-specific & Temp files (Not needed)
+uploads/
+config/
+diagnostics-backend/
+models/
+
+# SSL Certificates (Sensitive security files)
+server.cert
+server.key
+
+# Images & Other Assets (Optional)
+*.png
+*.jpeg
+*.jpg

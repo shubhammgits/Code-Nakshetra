@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Analyzer</title>
+    <style>
+        #loader {
+            display: none;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        async function uploadPDF() {
+            const fileInput = document.getElementById("pdfFile");
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Please select a PDF file.");
+                return;
+            }
+            
+            document.getElementById("loader").style.display = "block";
+            document.getElementById("response").innerText = "";
+            
+            const formData = new FormData();
+            formData.append("file", file);
+            
+            const response = await fetch("http://127.0.0.1:5000/analyze", {
+                method: "POST",
+                body: formData
+            });
+            
+            const result = await response.json();
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("response").innerText = result.analysis;
+        }
+    </script>
+</head>
+<body>
+    <h2>Upload a PDF for Analysis</h2>
+    <input type="file" id="pdfFile" accept="application/pdf">
+    <button onclick="uploadPDF()">Submit</button>
+    <div id="loader"></div>
+    <h3>Analysis Result:</h3>
+    <p id="response"></p>
+</body>
+</html>
