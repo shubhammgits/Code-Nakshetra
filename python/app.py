@@ -52,9 +52,9 @@ def analyze_pdf():
     
     pdf_text = extract_text_from_pdf(file_path)
     prompt = ("Analyze this medical report and provide structured information with proper spacing. "
-              "Format it as follows:\n\n"
+              "Format it as follows:(start after leaving one line spaces)\n\n"
               "**Summary**\n(Summary of the report highlighting abnormalities and risk level)\n\n"
-              "**Patient Details**\n(Patient's name, age, gender, and any relevant medical history)\n\n"
+              "**Patient Details**\n(Patient's name <br>, age <br>, gender <br>, and any relevant medical history<br>)\n\n"
               "**Risk Assessment & Alerts**\n(Detect potential health risks and suggest further tests)\n\n"
               "**Prescription Advice**\n(Provide medicines based on the disease mentioned in the report. If not available, suggest general treatment. "
               "Add a disclaimer that this is AI-generated and a doctor should be consulted for proper treatment.)\n\n"
